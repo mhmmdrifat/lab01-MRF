@@ -1,34 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block meta %}
+<title>Account Registration</title>
+{% endblock meta %} {% block content %}
 
-{% block meta %}
-<title>Registrasi Akun</title>
-{% endblock meta %}
+<div class="w-100 vh-100 d-flex justify-content-center align-items-center">
+  <div
+    class="d-flex flex-column align-items-center rounded-4 bg-light p-4 shadow-lg"
+  >
+    <h1>Login</h1>
 
-{% block content %}  
-
-<div class = "login">
-    
-    <h1>Formulir Registrasi</h1>  
-
-        <form method="POST" >  
-            {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>
-
-    {% if messages %}  
-        <ul>   
-            {% for message in messages %}  
-                <li>{{ message }}</li>  
-                {% endfor %}  
-        </ul>   
-    {% endif %}
-
-</div>  
+    <form method="POST" action="" class="d-flex flex-column">
+      {% csrf_token %}
+      <div class="d-flex flex-column mb-2">
+        <label for="username">Username</label>
+        {{form.username}} {% if form.username.errors %}
+        <span class="text-danger">{{ form.username.errors }}</span>
+        {% endif %}
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label for="password">Password</label>
+        {{form.password1}} {% if form.password1.errors %}
+        <span class="text-danger">{{ form.password1.errors }}</span>
+        {% endif %}
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label for="password">Password Confirmation</label>
+        {{form.password2}} {% if form.password2.errors %}
+        <span class="text-danger">{{ form.password2.errors }}</span>
+        {% endif %}
+      </div>
+      <button class="btn btn-success">Register</button>
+    </form>
+  </div>
+</div>
 
 {% endblock content %}

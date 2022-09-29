@@ -1,45 +1,47 @@
-{% extends 'base.html' %}
-
-{% block meta %}
+{% extends 'base.html' %} {% block meta %}
 <title>Login</title>
-{% endblock meta %}
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+/>
+{% endblock meta %} {% block content %}
 
-{% block content %}
-
-<div class = "login">
-
+<div class="w-100 vh-100 d-flex justify-content-center align-items-center">
+  <div
+    class="d-flex flex-column align-items-center rounded-4 bg-light p-4 shadow-lg"
+  >
     <h1>Login</h1>
 
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
+    <form method="POST" action="" class="d-flex flex-column">
+      {% csrf_token %}
+      <div class="d-flex flex-column mb-2">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="username"
+          class="form-control"
+        />
+      </div>
+      <div class="d-flex flex-column mb-2">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="password"
+          class="form-control"
+        />
+      </div>
+      <button class="btn btn-success">Login</button>
     </form>
 
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Belum mempunyai akun? <a href="{% url 'wishlist:register' %}">Buat Akun</a>
-
+    {% if messages %} {% for message in messages %}
+    <span class="text-danger">{{ message }}</span>
+    {% endfor %} {% endif %} Don't have an account?
+    <a href="{% url 'wishlist:register' %}">Create Account</a>
+  </div>
 </div>
 
 {% endblock content %}
