@@ -12,6 +12,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='/wishlist/login/')
+
 def show_wishlist(request):
     data_barang_wishlist = BarangWishlist.objects.all()
     context = {
@@ -20,10 +21,11 @@ def show_wishlist(request):
         'last_login' : request.COOKIES['last_login'],
 }
     return render(request, "wishlist.html", context)
+
 def wishlist_ajax(request):
     context = {
-        'nama': 'yancheesetofer',
-        'last_login': request.COOKIES['last_login']
+        'nama': 'Muhammad Rifat Fadhillah',
+        'last_login': request.COOKIES['last_login'],
     }
 
     return render(request, "wishlist_ajax.html", context)
